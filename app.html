@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slack — Discord Theme</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- Server bar (narrow) -->
+  <aside class="server-bar">
+    <div class="server-icon">S</div>
+    <div class="server-icon">D</div>
+    <div class="server-icon">+</div>
+  </aside>
+
+  <!-- Left Sidebar: channels & DMs -->
+  <aside class="left-sidebar">
+    <div class="workspace-header">
+      <h3>Workspace</h3>
+      <button class="small" onclick="createChannel()">+</button>
+    </div>
+
+    <div class="section">
+      <h4>Channels</h4>
+      <ul id="channels"></ul>
+    </div>
+
+    <div class="section">
+      <h4>Direct Messages</h4>
+      <ul id="dms"></ul>
+    </div>
+
+    <div class="sidebar-footer">
+      <button class="danger" onclick="logout()">Logout</button>
+    </div>
+  </aside>
+
+  <!-- Main chat area -->
+  <main class="main-chat">
+    <header class="chat-header" id="chatTitle">Select a channel</header>
+
+    <section class="messages" id="messages"></section>
+
+    <div class="composer">
+      <img class="avatar small-avatar" src="https://via.placeholder.com/40/5865f2/ffffff?text=Y" alt="You">
+      <div class="composer-input">
+        <input type="text" id="messageInput" placeholder="Message #general">
+      </div>
+      <button class="send" onclick="sendMessage()">Send</button>
+    </div>
+  </main>
+
+  <!-- Right sidebar: members -->
+  <aside class="right-sidebar">
+    <h4>Members</h4>
+    <ul class="members-list">
+      <li>Jane Doe</li>
+      <li>John Smith</li>
+    </ul>
+  </aside>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Discord-like Sign In</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="auth-container">
+    <div class="auth-box">
+      <div class="auth-brand">
+        <div class="logo">S</div>
+        <div>
+          <h1>Slack Clone</h1>
+          <div style="font-size:13px;color:var(--muted)">Welcome back — please login or create an account</div>
+        </div>
+      </div>
+
+      <div class="tabs" role="tablist">
+        <div class="tab active" id="tab-login" onclick="showTab('login')">Login</div>
+        <div class="tab" id="tab-signup" onclick="showTab('signup')">Sign Up</div>
+      </div>
+
+      <form id="form-login" class="auth-form active" onsubmit="event.preventDefault(); login();">
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="text" id="email" placeholder="you@company.com">
+        </div>
+        <div class="form-row">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Your password">
+        </div>
+        <div class="auth-actions">
+          <div class="link" onclick="showTab('signup')">Create an account</div>
+          <button type="submit" class="primary">Login</button>
+        </div>
+      </form>
+
+      <form id="form-signup" class="auth-form" onsubmit="event.preventDefault(); signup();">
+        <div class="form-row">
+          <label for="su-name">Full name</label>
+          <input type="text" id="su-name" placeholder="Jane Doe">
+        </div>
+        <div class="form-row">
+          <label for="su-email">Email</label>
+          <input type="text" id="su-email" placeholder="you@company.com">
+        </div>
+        <div class="form-row">
+          <label for="su-password">Password</label>
+          <input type="password" id="su-password" placeholder="Create password">
+        </div>
+        <div class="auth-actions">
+          <div style="color:var(--muted);font-size:13px">By continuing you agree to terms</div>
+          <button type="submit" class="primary">Create Account</button>
+        </div>
+      </form>
+
+      <div class="auth-footer">
+        <div style="margin-top:12px">Or continue as admin:</div>
+        <div style="margin-top:8px">
+          <button onclick="buySubscription()">Buy & Create Admin</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script>
+    function showTab(which){
+      document.getElementById('tab-login').classList.toggle('active', which==='login');
+      document.getElementById('tab-signup').classList.toggle('active', which==='signup');
+      document.getElementById('form-login').classList.toggle('active', which==='login');
+      document.getElementById('form-signup').classList.toggle('active', which==='signup');
+    }
+
+    function signup(){
+      const name = document.getElementById('su-name').value.trim();
+      const email = document.getElementById('su-email').value.trim();
+      if(!email || !name){ alert('Enter name and email'); return; }
+      const user = { email, name, role: 'USER' };
+      localStorage.setItem('user', JSON.stringify(user));
+      window.location.href = 'app.html';
+    }
+  </script>
+</body>
+</html>
